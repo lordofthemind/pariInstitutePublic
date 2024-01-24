@@ -1,0 +1,84 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% block title %}
+<title>Pari Institute | Faculty Batches</title>
+{% endblock %}
+{% block content %}
+{% include 'faculty/f_nav.html' %}
+
+<section class="pt-4">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <section class="pb-5 pt-5 bg-600 col-12 col-md-12 col-sm-12">
+                <div class="container">
+                    <h4 class="font-sans-serif text-primary fw-bold">Assigned Batches</h4>
+                    <h1 class="mb-2">Faculty</h1>
+                    <div class="row">
+                        {% for one in asindbatch %}
+                        <div class="col-12 col-md-4 mt-3 mb-1">
+                            <div class="card h-100">
+                                <img class="card-img-top w-100" style="width: 100%; height: 300px; object-fit: cover;"
+                                    src="{{ one.course.pic.url }}" alt="courses" />
+                                <div class="card-body">
+                                    <h5 class="font-sans-serif fw-bold fs-md-0 fs-lg-1">
+                                        {{ one.course.name }}
+                                    </h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <strong>
+                                            Starting Date 
+                                        </strong>
+                                        : {{ one.start_dt }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>
+                                            Timing 
+                                        </strong>
+                                        : {{ one.timing }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>
+                                            Faculty 
+                                        </strong>
+                                        : {{ one.faculty.fname }} {{ one.faculty.lname }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>
+                                            Duration 
+                                        </strong>
+                                        : {{ one.course.duration }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>
+                                            Lectures 
+                                        </strong>
+                                        : {{ one.course.lectures }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>
+                                            Categories 
+                                        </strong>
+                                        : {{ one.course.categories }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>
+                                            Level 
+                                        </strong>
+                                        : {{ one.course.level }}
+                                    </li>
+                                    <li class="list-group-item text-center">
+                                        <p class="text-muted mb-0 mt-0">Created At: {{one.created_at}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

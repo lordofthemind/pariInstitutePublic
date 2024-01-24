@@ -1,0 +1,178 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% block title %}
+<title>Pari Institute | Student Register</title>
+{% endblock %}
+{% block content %}
+
+{% include 'landing/locknav.html' %}
+
+<section class="pt-4">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <section class="pb-5 pt-5 bg-600 col-12 col-md-12 col-sm-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="text-left">
+                                <p class="text-success">{{gmsg}}</p>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-danger">{{rmsg}}</p>
+                            </div>
+                            <h4 class="font-sans-serif text-primary fw-bold">Register New Account</h4>
+                            <h1 class="mb-4">Student</h1>
+                            <form class="row g-3" action="{% url 'st_register' %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-12 col-md-7">
+                                        <h4 class="font-sans-serif text-success fw-bold">Personal Details</h4>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 col-md-6">
+                                                <label class="form-label" for="inputCategories">First Name</label>
+                                                <input type="text" placeholder="First Name" name="fname"
+                                                    class="form-control" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-6">
+                                                <label class="form-label" for="inputCategories">Last Name</label>
+                                                <input type="text" placeholder="Last Name" name="lname"
+                                                    class="form-control" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-8">
+                                                <label class="form-label" for="inputCategories">Email</label>
+                                                <input type="email" placeholder="Enter Email" name="email"
+                                                    class="form-control" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-4">
+                                                <label class="form-label" for="inputCategories">Mobile No.</label>
+                                                <input type="tel" maxlength="13" value="+91" name="mobile"
+                                                    class="form-control" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-6">
+                                                <label class="form-label" for="inputCategories">Date of Birth</label>
+                                                <input type="date" name="dob" class="form-control" id="dob13" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-6">
+                                                <label class="form-label" for="inputCategories">Self Pic</label>
+                                                <input type="file" name="slfpic" class="btn-secondary form-control"
+                                                    accept=".jpg, .jpeg" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-12">
+                                                <label class="form-label" for="inputCategories">Fathers Name</label>
+                                                <input type="text" placeholder="Father's Name" name="fthrname"
+                                                    class="form-control" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-12">
+                                                <label class="form-label" for="inputCategories">Mothers Name</label>
+                                                <input type="text" placeholder="Mother's Name" name="mdrname"
+                                                    class="form-control" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-12">
+                                                <label class="form-label" for="inputCategories">Current Address</label>
+                                                <textarea type="text" rows="4" placeholder="Address" name="adrss"
+                                                    class="form-control" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <h4 class="font-sans-serif text-success fw-bold">Professional Details</h4>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 col-md-12">
+                                                <label class="form-label" for="inputLevel">Qualification</label>
+                                                <select class="form-control form-select" name="qualif" required>
+                                                    <option value="Matric">Matric</option>
+                                                    <option value="Inter">Inter</option>
+                                                    <option value="Graduation">Graduation</option>
+                                                    <option value="PG">PG</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-12">
+                                                <label class="form-label" for="inputCategories">10<sub>th</sub>
+                                                    Marksheet</label>
+                                                <input type="file" name="mark10" class="btn-secondary form-control"
+                                                    accept=".pdf" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-12">
+                                                <label class="form-label" for="inputCategories">12<sub>th</sub>
+                                                    Marksheet</label>
+                                                <input type="file" name="mark12" class="btn-secondary form-control"
+                                                    accept=".pdf" />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-12">
+                                                <label class="form-label" for="inputLevel">Document Type</label>
+                                                <select class="form-control form-select" name="doctype" required>
+                                                    <option value="Pan Card">Pan Card</option>
+                                                    <option value="Aadhar">Aadhar</option>
+                                                    <option value="DL">DL</option>
+                                                    <option value="Passport">Passport</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-12">
+                                                <label class="form-label" for="inputLevel">Document Number</label>
+                                                <input type="text" placeholder="Document Number" maxlength="20"
+                                                    name="docnum" class="form-control" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-12">
+                                                <label class="form-label" for="inputCategories">Document Pic</label>
+                                                <input type="file" name="docpic" class="btn-secondary form-control"
+                                                    accept=".jpg, .jpeg, .pdf" required />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-12">
+                                                <label class="form-label" for="inputCategories">Signature</label>
+                                                <input type="file" name="sign" class="btn-secondary form-control"
+                                                    accept=".jpg, .jpeg" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto z-index-2">
+                                    <button class="btn btn-primary" type="submit">Request Student Account</button>
+                                </div>
+                                <div class="form-row d-flex justify-content-between mt-4 mb-2">
+                                    <div class="form-group pull-right">
+                                        <a href="{% url 'st_login' %}">Log-in as Student</a>
+                                    </div>
+                                    <div class="form-group pull-left">
+                                        <a href="{% url 'st_frgtpswd' %}">Forgot Password??</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    //restrict past date
+    var today = new Date();
+    var dd = today.getDate() + 1;
+    var mm = today.getMonth() + 1; //January is 01
+    var yyyy = today.getFullYear() - 13;
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    minDate = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("dob13").setAttribute("max", minDate);
+
+    var dd1 = today.getDate() + 1;
+    var mm1 = today.getMonth() + 1; //January is 01
+    var yyyy1 = today.getFullYear() - 53;
+    if (dd1 < 10) {
+        dd1 = '0' + dd1;
+    }
+    if (mm1 < 10) {
+        mm1 = '0' + mm1;
+    }
+    maxDate = yyyy1 + '-' + mm1 + '-' + dd1;
+    document.getElementById("dob13").setAttribute("min", maxDate);
+
+</script>
+
+{% endblock %}

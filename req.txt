@@ -1,0 +1,127 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+django = "==4.0.4"
+asgiref = "==3.5.1"
+sqlparse = "==0.4.2"
+django-storages = "==1.12.3"
+autopep8 = "==1.6.0"
+pycodestyle = "==2.8.0"//
+boto3 = "==1.24.27"
+botocore = "==1.27.27"
+jmespath = "==1.0.1"//
+python-dateutil = "==2.8.2"
+s3transfer = "==0.6.0"
+six = "==1.16.0"//
+toml = "==0.10.2"
+urllib3 = "==1.26.10"
+environs = "==9.5.0"
+marshmallow = "==3.17.0"
+python-dotenv = "==0.20.0"//
+gunicorn = "==20.1.0"
+pillow = "==9.1.1"
+psycopg2-binary = "==2.9.3"
+whitenoise = "==6.0.0"
+tzdata = "==2022.1"
+dj-database-url = "==0.5.0"
+pyparsing = "==3.0.9"
+dj-email-url = "==1.0.5"
+[packages]
+django-cache-url = "==3.4.2"
+django-debug-toolbar = "==3.5.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
+
+
+
+asgiref==3.6.0
+autopep8==1.6.0
+boto3==1.24.27
+botocore==1.27.96
+dj-database-url==0.5.0
+dj-email-url==1.0.5
+Django==4.0.4
+django-cache-url==3.4.2
+django-storages==1.12.3
+environs==9.5.0
+gunicorn==20.1.0
+jmespath==1.0.1
+marshmallow==3.19.0
+packaging==23.0
+Pillow==9.1.1
+psycopg2-binary==2.9.5
+pycodestyle==2.10.0
+pyparsing==3.0.9
+python-dateutil==2.8.2
+python-dotenv==1.0.0
+s3transfer==0.6.0
+six==1.16.0
+sqlparse==0.4.3
+toml==0.10.2
+tzdata==2022.1
+urllib3==1.26.14
+whitenoise==6.0.0
+
+
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==4.0.4"
+django-storages = "==1.12.3"
+autopep8 = "==1.6.0"
+boto3 = "==1.24.27"
+environs = "==9.5.0"
+gunicorn = "==20.1.0"
+pillow = "==9.1.1"
+psycopg2-binary = "==2.9.5"
+whitenoise = "==6.0.0"
+tzdata = "==2022.1"
+dj-database-url = "==0.5.0"
+pyparsing = "==3.0.9"
+dj-email-url = "==1.0.5"
+django-cache-url = "==3.4.2"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
+python_full_version = "3.10.6"
+
+
+
+
+asgiref = "==3.6.0"
+autopep8 = "==1.6.0"
+boto3 = "==1.24.27"
+botocore = "==1.27.96"
+dj-database-url = "==0.5.0"
+dj-email-url = "==1.0.5"
+django = "==4.0.4"
+django-cache-url = "==3.4.2"
+django-storages = "==1.12.3"
+environs = "==9.5.0"
+gunicorn = "==20.1.0"
+jmespath = "==1.0.1"
+marshmallow = "==3.19.0"
+packaging = "==23.0"
+pillow = "==9.1.1"
+psycopg2-binary = "==2.9.5"
+pycodestyle = "==2.10.0"
+pyparsing = "==3.0.9"
+python-dateutil = "==2.8.2"
+python-dotenv = "==1.0.0"
+s3transfer = "==0.6.0"
+six = "==1.16.0"
+sqlparse = "==0.4.3"
+toml = "==0.10.2"
+tzdata = "==2022.1"
+urllib3 = "==1.26.14"
+whitenoise = "==6.0.0"

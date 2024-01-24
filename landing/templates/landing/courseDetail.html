@@ -1,0 +1,76 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% block title %}
+<title>Pari Institute | Course Details</title>
+{% endblock %}
+{% block content %}
+
+{% include 'landing/locknav.html' %}
+
+<section class="pt-4">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <section class="pb-1 pt-1 bg-600 col-12 col-md-12 col-sm-12">
+                <section class="pb-11 pt-5 bg-600">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="font-sans-serif text-primary fw-bold">Course detail</h4>
+                                <h1 class="mb-4">{{ course.name }}</h1>
+                                <h4 class="font-sans-serif text-secondary fw-bold">{{ course.srt_desc }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section style="margin-top:-21.5rem">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <img class="card-img-top rounded float-end w-100"
+                                    style="width: 100%; height: 500px; object-fit: cover;" src="{{ course.pic.url }}"
+                                    alt="..." />
+                                <h1 class="my-4">Description</h1>
+                                <p>{{ course.lng_desc }}</p>
+                                <h1>What You’ll Learn?</h1>
+                                <ul class="list-unstyled">
+                                    {% for one in learn %}
+                                    <li class="mb-3"> <i class="fas fa-check text-info me-2"></i>
+                                        <strong>
+                                            {{ one.lrn_nm }}
+                                        </strong>
+                                        &nbsp;{{ one.lrn_dsc }}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><strong>Enrolled </strong>: 1200 students</li>
+                                        <li class="list-group-item"><strong>Duration </strong>: {{ course.duration }}
+                                        </li>
+                                        <li class="list-group-item"><strong>Lectures </strong>: {{ course.lectures }}
+                                        </li>
+                                        <li class="list-group-item"><strong>Categories </strong>
+                                            : {{ course.categories }}
+                                        </li>
+                                        <li class="list-group-item"><strong>Level </strong>: {{ course.level }}</li>
+                                        <li class="list-group-item text-center"><img
+                                                src="{% static 'landing/assets/img/gallery/searching.png' %}" width="78"
+                                                alt="..." />
+                                            <p class="text-muted mb-0 mt-4">Contact Institute at</p><a class="text-info"
+                                                href="mailto:institutepari@gmail.com">institutepari@gmail.com</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

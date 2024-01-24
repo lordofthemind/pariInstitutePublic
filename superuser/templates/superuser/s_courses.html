@@ -1,0 +1,164 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% block title %}
+<title>Pari Institute | SuperUser Course</title>
+{% endblock %}
+{% block content %}
+
+{% include 'superuser/s_nav.html' %}
+
+<section class="pt-4">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <section class="pb-5 pt-5 bg-600 col-12 col-md-12 col-sm-12">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <div class="text-left">
+                <p class="text-success">{{gmsg}}</p>
+              </div>
+              <div class="text-left">
+                <p class="text-danger">{{rmsg}}</p>
+              </div>
+              <h4 class="font-sans-serif text-primary fw-bold">Create New Course</h4>
+              <h1 class="mb-4">Super User</h1>
+              <form class="row g-3" action="{% url 's_courses' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-12 col-sm-6 col-md-7">
+                  <label class="form-label" for="inputCategories">Course Name</label>
+                  <input type="text" placeholder="Enter Course Name" name="corsname" class="form-control" required />
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <label class="form-label" for="inputLevel">Duration</label>
+                  <select class="form-control form-select" name="corsdrsn" required>
+                    <option selected="selected">3 Months</option>
+                    <option value="1">4 Months</option>
+                    <option value="2">6 Months</option>
+                    <option value="3">12 Months</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-2">
+                  <label class="form-label" for="inputLevel">Fee(₹)</label>
+                  <input type="text" placeholder="Fee" name="corsfee" class="form-control" required />
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  <label class="form-label" for="inputLevel">Catagory</label>
+                  <select class="form-control form-select" name="catagory" required>
+                    <option selected="selected">Select</option>
+                    <option value="Software">Software</option>
+                    <option value="Hardware">Hardware</option>
+                    <option value="Skill Level">Skill Level</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  <label class="form-label" for="inputLevel">Level</label>
+                  <select class="form-control form-select" name="level" required>
+                    <option selected="selected">Select</option>
+                    <option value="Begginer">Begginer</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Professional">Professional</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  <label class="form-label" for="inputLevel">Lectures</label>
+                  <input type="text" placeholder="Number of lectures" name="lectures" class="form-control" required />
+                </div>
+                <div class="col-12 col-sm-6 col-md-7">
+                  <label class="form-label" for="inputCategories">Short Description</label>
+                  <input type="text" placeholder="Short Description" name="corssdesc" class="form-control" required />
+                </div>
+                <div class="col-12 col-sm-6 col-md-5">
+                  <label class="form-label" for="inputCategories">Picture</label>
+                  <input type="file" name="corspic" class="btn-secondary form-control" accept=".jpeg, .jpg" required />
+                </div>
+                <div class="form-group col-12 col-sm-6 col-md-12">
+                  <label>Course Description*(!>100L)</label>
+                  <textarea class="form-control" rows="6" placeholder="Enter Course Long Description" name="corsldesc"
+                    required></textarea>
+                </div>
+                <div class="col-auto z-index-2">
+                  <button class="btn btn-primary" type="submit">Create New Course</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-12 col-md-4 pt-3">
+              <h4 class="font-sans-serif text-primary fw-bold">Add Learn in Course</h4>
+              <h1 class="mb-4">Super User</h1>
+              <form class="row g-3" action="{% url 's_addLearn' %}" method="POST">
+                {% csrf_token %}
+                <div class="col-12">
+                  <label class="form-label" for="inputLevel">Course</label>
+                  <select class="form-control form-select" name="corsnm" required>
+                    {% for one in course %}
+                    <option value="{{ one.id }}">{{ one.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="inputCategories">Learn Initials</label>
+                  <input type="text" placeholder="Learn Initials" name="corslrnm" class="form-control" required />
+                </div>
+                <div class="form-group col-12">
+                  <label>Learn Description*(!>100L)</label>
+                  <textarea class="form-control" rows="10" placeholder="Enter Course Learn Description"
+                    name="corslrndesc" required></textarea>
+                </div>
+                <div class="col-auto z-index-2">
+                  <button class="btn btn-primary" type="submit">Create New Learn</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr>
+      <section class="pb-5 pt-5 bg-600 col-12 col-md-12 col-sm-12">
+        <div class="container">
+          <div class="row pt-4">
+            <h1 class="text-center">Existing Courses</h1>
+            {% for one in course %}
+            <div class="col-12 col-md-4 mt-7 mb-4">
+              <div class="card h-100">
+                <img class="card-img-top w-100" style="width: 100%; height: 300px; object-fit: cover;"
+                  src="{{ one.pic.url }}" alt="courses" />
+                {% if one.is_active %}
+                <div class="text-center mb-0">
+                  <span class="badge bg-black fw-normal text-uppercase bg-primary">Active</span>
+                </div>
+                {% else %}
+                <div class="text-center mb-0">
+                  <span class="badge bg-black fw-normal text-uppercase bg-secondary">Inactive</span>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="font-sans-serif fw-bold fs-md-0 fs-lg-1">
+                    {{ one.name }}
+                  </h5>
+                  <a class="text-muted fs--1 stretched-link text-decoration-none" href="#!">
+                    {{ one.srt_desc }}
+                  </a>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Enrolled </strong>: 1200 students</li>
+                  <li class="list-group-item"><strong>Duration </strong>: {{ one.duration }}</li>
+                  <li class="list-group-item"><strong>Lectures </strong>: {{ one.lectures }}</li>
+                  <li class="list-group-item"><strong>Categories </strong>: {{ one.categories }}</li>
+                  <li class="list-group-item"><strong>Level </strong>: {{ one.level }}</li>
+                  <li class="list-group-item text-center">
+                    <p class="text-muted mb-0 mt-0">Created At: {{one.created_at}}</p>
+                  </li>
+                </ul>
+              </div>
+              <div class="d-grid pt-3">
+                <a class="btn btn-lg btn-info" href="{% url 's_courseDetail' one.id %}">View in Detail</a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

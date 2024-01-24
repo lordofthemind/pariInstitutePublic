@@ -1,0 +1,172 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% block title %}
+<title>Pari Institute | SuperUser Profile</title>
+{% endblock %}
+{% block content %}
+
+{% include 'superuser/s_nav.html' %}
+
+
+<section class="pt-4">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <section class="pb-5 pt-5 bg-600 col-12 col-md-12 col-sm-12">
+        <div class="container">
+          <h4 class="font-sans-serif text-primary fw-bold">Manage Profile</h4>
+          <h1 class="mb-2">Super User</h1>
+          <div class="row">
+            <div class="col-12 col-md-5">
+              <h4 class="text-primary mb-4">Picture</h4>
+              <div class="card mb-2 mb-md-0 h-60 w-80">
+                <img class="card-img-top rounded float-end w-100" style="width: 100%; height: 100%; object-fit: cover;"
+                  src="{{ suid.pic.url }}" alt="pic" />
+              </div>
+            </div>
+            <div class="col-12 col-md-7">
+              <h4 class="text-primary mb-4">Personal Information</h4>
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body px-4 py-3 py-md-4 py-lg-4">
+                    <div class="d-flex justify-content-start text-secondary"><span class="display-5 fw-bold">
+                        {{ suid.first_name }} {{ suid.last_name }}</span>
+                    </div>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Email Address</strong>: {{ suid.email }}</li>
+                    <li class="list-group-item"><strong>Mobile No. </strong>: {{ suid.mobile }}</li>
+                    <li class="list-group-item"><strong>Date of Birth </strong>: {{ suid.dob }}</li>
+                    <li class="list-group-item"><strong>Designation </strong>: {{ suid.designation }}</li>
+                    <li class="list-group-item"><strong>Occupation </strong>: {{ suid.occupation }}</li>
+                    <li class="list-group-item"><strong>Address </strong>: {{ suid.address }}</li>
+                    <li class="list-group-item"><strong>About </strong>: {{ suid.about }}</li>
+                    <li class="list-group-item text-center"><img
+                        src="{% static 'landing/assets/img/gallery/searching.png' %}" width="78" alt="..." />
+                      <p class="text-muted mb-0 mt-4">Registered At: {{ stid.created_at}}</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr>
+      <section class="pb-5 pt-5 bg-600 col-12 col-md-12 col-sm-12">
+        <div class="container">
+          <div class="text-left">
+            <p class="text-success">{{gmsg}}</p>
+          </div>
+          <div class="text-left">
+            <p class="text-danger">{{rmsg}}</p>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <h4 class="text-primary">
+                Add/Update Personal Details
+              </h4>
+              <form class="row g-3" action="{% url 's_profileUpdate' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-12 col-sm-6 col-md-6">
+                  <label class="form-label" for="inputCategories">First Name</label>
+                  <input type="text" value="{{suid.first_name}}" name="fname" class="form-control" required />
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                  <label class="form-label" for="inputCategories">Last Name</label>
+                  <input type="text" value="{{suid.last_name}}" name="lname" class="form-control" required />
+                </div>
+                <div class="col-12 col-sm-6 col-md-8">
+                  <label class="form-label" for="inputCategories">Email</label>
+                  <input type="email" value="{{suid.email}}" name="email" class="form-control" disabled />
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  <label class="form-label" for="inputCategories">Mobile No.</label>
+                  <input type="text" value="{{suid.mobile}}" name="mobile" class="form-control" disabled />
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                  <label class="form-label" for="inputCategories">Date of Birth</label>
+                  <input type="date" value="{{dateob}}" name="dob" id="dob18" class="form-control" />
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                  <label class="form-label" for="inputCategories">Self Pic</label>
+                  <input type="file" name="slfpic" class="btn-secondary form-control" accept=".jpeg, .jpg" />
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                  <label class="form-label" for="inputCategories">Designation</label>
+                  <input type="text" value="{{suid.designation}}" name="dsgntn" class="form-control" required />
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                  <label class="form-label" for="inputCategories">Occupassion</label>
+                  <input type="text" value="{{suid.occupation}}" name="ocupsn" class="form-control" />
+                </div>
+                <div class="col-12 col-sm-6 col-md-12">
+                  <label class="form-label" for="inputLevel">About</label>
+                  <input type="text" value="{{suid.about}}" name="abt" class="form-control" />
+                </div>
+                <div class="col-12 col-sm-6 col-md-12">
+                  <label class="form-label" for="inputLevel">Address</label>
+                  <input type="text" value="{{suid.address}}" name="adrss" class="form-control" />
+                </div>
+                <div class="col-auto z-index-2">
+                  <button class="btn btn-primary" type="submit">Update Your Profile</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-12 col-md-4">
+              <h4 class="text-primary">Update Password</h4>
+              <form class="row g-3" action="{% url 's_paswrdUpdate' %}" method="POST">
+                {% csrf_token %}
+                <div class="col-12 col-sm-6 col-md-12">
+                  <label class="form-label" for="inputCategories">Current Pasword</label>
+                  <input type="password" name="crntpswd" class="form-control" required />
+                </div>
+                <div class="col-12 col-sm-6 col-md-12">
+                  <label class="form-label" for="inputCategories">Enter New Password</label>
+                  <input type="password" name="nwpswd" class="form-control" required />
+                </div>
+                <div class="col-12 col-sm-6 col-md-12">
+                  <label class="form-label" for="inputCategories">Confirm New Password</label>
+                  <input type="password" name="cnfnwpswd" class="form-control" required />
+                </div>
+                <div class="col-auto z-index-2">
+                  <button class="btn btn-primary" type="submit">Update Your Password</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<script>
+  //restrict past date
+  var today = new Date();
+  var dd = today.getDate() + 1;
+  var mm = today.getMonth() + 1; //January is 01
+  var yyyy = today.getFullYear() - 18;
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+  minDate = yyyy + '-' + mm + '-' + dd;
+  document.getElementById("dob18").setAttribute("max", minDate);
+
+  var dd1 = today.getDate() + 1;
+  var mm1 = today.getMonth() + 1; //January is 01
+  var yyyy1 = today.getFullYear() - 78;
+  if (dd1 < 10) {
+    dd1 = '0' + dd1;
+  }
+  if (mm1 < 10) {
+    mm1 = '0' + mm1;
+  }
+  maxDate = yyyy1 + '-' + mm1 + '-' + dd1;
+  document.getElementById("dob18").setAttribute("min", maxDate);
+
+</script>
+
+{% endblock %}

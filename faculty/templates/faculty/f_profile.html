@@ -1,0 +1,97 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% block title %}
+<title>Pari Institute | Faculty Profile</title>
+{% endblock %}
+{% block content %}
+{% include 'faculty/f_nav.html' %}
+
+<section class="pt-4">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <section class="pb-5 pt-5 bg-600 col-12 col-md-12 col-sm-12">
+                <div class="container">
+                    <h4 class="font-sans-serif text-primary fw-bold">Manage Profile</h4>
+                    <h1 class="mb-2">Faculty</h1>
+                    <div class="row">
+                        <div class="col-12 col-md-5">
+                            <h4 class="text-primary mb-4">Picture</h4>
+                            <div class="card mb-2 mb-md-0 h-60 w-80">
+                                <img class="card-img-top rounded float-end w-100"
+                                    style="width: 100%; height: 100%; object-fit: cover;" src="{{ fid.pic.url }}"
+                                    alt="pic" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-7">
+                            <h4 class="text-primary mb-4">Personal Information</h4>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body px-4 py-3 py-md-4 py-lg-4">
+                                      <div class="d-flex justify-content-start text-secondary"><span class="display-5 fw-bold">{{ fid.fname }} {{ fid.lname }}</span>
+                                      </div>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><strong>Email Address</strong>: {{ fid.email }}</li>
+                                        <li class="list-group-item"><strong>Mobile No. </strong>: {{ fid.mobile }}</li>
+                                        <li class="list-group-item"><strong>Date of Birth </strong>: {{ fid.dob }}</li>
+                                        <li class="list-group-item"><strong>Qualification </strong>: {{ fid.qualification }}</li>
+                                        <li class="list-group-item"><strong>Experties 1 </strong>: {{ fid.experties_1 }}</li>
+                                        <li class="list-group-item"><strong>Experties 2 </strong>: {{ fid.experties_2 }}</li>
+                                        <li class="list-group-item"><strong>Document Type </strong>: {{ fid.doc_type }}</li>
+                                        <li class="list-group-item"><strong>Document Num </strong>: {{ fid.doc_num }}</li>                                        
+                                        <li class="list-group-item"><strong>Address </strong>: {{ fid.address }}</li>
+                                        <li class="list-group-item text-center"><img
+                                                src="{% static 'landing/assets/img/gallery/searching.png' %}" width="78" alt="..." />
+                                            <p class="text-muted mb-0 mt-4">Registered At: {{ fid.created_at}}</p> 
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr>
+            <section class="pb-5 pt-5 bg-600 col-12 col-md-12 col-sm-12">
+                <div class="container">
+                    <div class="text-left">
+                        <p class="text-success">{{gmsg}}</p>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-danger">{{rmsg}}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                            
+
+                            
+                        </div>
+                        <div class="col-12 col-md-4 pt-4">
+                            <h4 class="text-primary">Update Password</h4>
+                            <form class="row g-3" action="{% url 'st_paswrdUpdate' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="col-12 col-sm-6 col-md-12">
+                                    <label class="form-label" for="inputCategories">Current Pasword</label>
+                                    <input type="password" name="crntpswd" class="form-control" required />
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-12">
+                                    <label class="form-label" for="inputCategories">Enter New Password</label>
+                                    <input type="password" name="nwpswd" class="form-control" required />
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-12">
+                                    <label class="form-label" for="inputCategories">Confirm New Password</label>
+                                    <input type="password" name="cnfnwpswd" class="form-control" required />
+                                </div>
+                                <div class="col-auto z-index-2">
+                                    <button class="btn btn-primary" type="submit">Update Your Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

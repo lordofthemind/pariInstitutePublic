@@ -1,0 +1,62 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% block title %}
+<title>Pari Institute | SuperUser Batch Details</title>
+{% endblock %}
+{% block content %}
+
+{% include 'superuser/s_nav.html' %}
+
+
+<section class="pt-4">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <section class="pb-1 pt-1 bg-600 col-12 col-md-12 col-sm-12">
+        <section class="pb-11 pt-5 bg-600">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <h4 class="font-sans-serif text-primary fw-bold">Batch detail</h4>
+                <h1 class="mb-4">{{ batch.course.name }} {{ batch.start_dt }}</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section style="margin-top:-21.5rem">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Enrolled </strong>: {{ batch.student.count}}</li>
+                    <li class="list-group-item"><strong>Duration </strong>: {{ batch.course.duration }}</li>
+                    <li class="list-group-item"><strong>Timing </strong>: {{ batch.timing }}</li>
+                    <li class="list-group-item"><strong>Lectures </strong>: {{ batch.course.lectures }}</li>
+                    <li class="list-group-item"><strong>Categories </strong>: {{ batch.course.categories }}</li>
+                    <li class="list-group-item"><strong>Level </strong>: {{ batch.course.level }}</li>
+                    <li class="list-group-item text-center"><img
+                        src="{% static 'landing/assets/img/gallery/searching.png' %}" width="78" alt="..." />
+                      <p class="text-muted mb-0 mt-4">Created at {{ batch.created_at }}</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="d-grid pt-3">
+                  {% if batch.is_active %}
+                  <a class="btn btn-lg btn-secondary" href="{% url 's_batchDeactivate' batch.id %}">Deactivate</a>
+                  {% else %}
+                  <a class="btn btn-lg btn-primary" href="{% url 's_batchActivate' batch.id %}">Activate</a>
+                  {% endif %}
+                  <div class="d-grid pt-3">
+                    <a class="btn btn-lg btn-danger" href="{% url 's_batchDelete' batch.id %}">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+      </section>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

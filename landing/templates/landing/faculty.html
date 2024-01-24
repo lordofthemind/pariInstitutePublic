@@ -1,0 +1,33 @@
+{% load static %}
+{% block content %}
+<section id="courses" class="pb-5 pt-5 col-12 col-md-12 col-sm-12">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center mb-5">Our Top Faculties</h1>
+            {% for one in faculty %}
+            <div class="col-12 col-md-4 p-3 ">
+                <div class="card mb-2 mb-md-0 h-100">
+                    <img class="card-img-top w-100" style="width: 100%; height: 400px; object-fit: cover;"
+                        src="{{ one.pic.url }}" alt="pic" />
+                    <div class="card-body px-4 py-3 py-md-4 py-lg-4">
+                        <div class="d-flex justify-content-start text-secondary">
+                            <span class="display-5 fw-bold">
+                                {{ one.fname }} {{ one.lname }}
+                            </span>
+                        </div>
+                        <h5 class="font-sans-serif fw-medium fs-md-0 fs-lg-1">
+                            {{ one.experties_1 }} Expert
+                        </h5>
+                    </div>
+                    <ul class="list-group list-group-flush">                        
+                        <li class="list-group-item"><i
+                                class="fas fa-user-graduate text-info me-2"></i>{{one.qualification}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
